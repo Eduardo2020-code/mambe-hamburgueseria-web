@@ -1,0 +1,18 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": [],
+      "label": "Mambe: iniciar Angular",
+      "detail": "Ejecuta ng serve y abre el sitio"
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": [],
+      "label": "Mambe: compilar producción"
+    }
+  ]
+}

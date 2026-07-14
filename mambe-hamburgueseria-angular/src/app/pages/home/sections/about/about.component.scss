@@ -1,0 +1,217 @@
+.about {
+  background:
+    radial-gradient(circle at 85% 18%, rgba(110, 221, 229, 0.18), transparent 26%),
+    var(--mambe-cream);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(46px, 9vw, 110px);
+  }
+
+  &__media {
+    position: relative;
+    min-height: 670px;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0 54px 20px 0;
+    overflow: hidden;
+    border-radius: 46% 46% 24px 24px;
+    box-shadow: var(--shadow-md);
+    transform: rotate(-2deg);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms ease;
+    }
+
+    &:hover img {
+      transform: scale(1.035);
+    }
+  }
+
+  &__seal {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    bottom: 78px;
+    display: grid;
+    width: 160px;
+    height: 160px;
+    place-content: center;
+    border: 9px solid var(--mambe-cream);
+    border-radius: 50%;
+    color: var(--mambe-navy);
+    background: var(--mambe-gold);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transform: rotate(8deg);
+
+    strong {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    span {
+      margin-top: 7px;
+      font-size: 0.8rem;
+      font-weight: 900;
+      line-height: 1.25;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+  }
+
+  &__pattern {
+    position: absolute;
+    z-index: -1;
+    top: 60px;
+    right: 0;
+    width: 58%;
+    height: 66%;
+    border-radius: var(--radius-md);
+    background-color: var(--mambe-navy);
+    background-image: url("/assets/patterns/mambe-pattern.svg");
+    transform: rotate(4deg);
+  }
+
+  &__copy {
+    h2 {
+      max-width: 680px;
+      margin: 0;
+      color: var(--mambe-navy);
+      font-size: clamp(2.6rem, 5.5vw, 5.5rem);
+      font-weight: 950;
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+    }
+
+    > p:not(.eyebrow) {
+      color: var(--mambe-muted);
+      font-size: 1.06rem;
+    }
+  }
+
+  &__lead {
+    margin: 30px 0 17px;
+    color: var(--mambe-navy) !important;
+    font-size: clamp(1.16rem, 2vw, 1.4rem) !important;
+    font-weight: 800;
+  }
+
+  &__highlights {
+    display: grid;
+    gap: 16px;
+    margin-top: 34px;
+
+    article {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 17px;
+      padding: 19px;
+      border: 1px solid var(--mambe-border);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.76);
+      transition: transform var(--transition), box-shadow var(--transition);
+
+      &:hover {
+        box-shadow: var(--shadow-sm);
+        transform: translateX(7px);
+      }
+
+      > span {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--mambe-navy);
+        background: var(--mambe-cyan);
+        font-weight: 950;
+      }
+
+      h3 {
+        margin: 0 0 4px;
+        font-size: 1.08rem;
+      }
+
+      p {
+        margin: 0;
+        color: var(--mambe-muted);
+        font-size: 0.93rem;
+      }
+    }
+  }
+
+  &__shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+
+    &--one {
+      top: 10%;
+      left: -80px;
+      width: 190px;
+      height: 190px;
+      border: 28px solid rgba(245, 143, 58, 0.18);
+    }
+
+    &--two {
+      right: 4%;
+      bottom: 2%;
+      width: 34px;
+      height: 34px;
+      background: var(--mambe-orange);
+      transform: rotate(45deg);
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .about {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__media {
+      width: min(100%, 620px);
+      min-height: 650px;
+      margin-inline: auto;
+    }
+
+    &__copy {
+      max-width: 760px;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .about {
+    &__media {
+      min-height: 480px;
+    }
+
+    &__image {
+      right: 28px;
+    }
+
+    &__seal {
+      width: 126px;
+      height: 126px;
+      border-width: 6px;
+
+      strong {
+        font-size: 1.55rem;
+      }
+
+      span {
+        font-size: 0.67rem;
+      }
+    }
+  }
+}

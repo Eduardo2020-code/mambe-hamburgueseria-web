@@ -1,0 +1,55 @@
+<section id="esencia" class="section essence" aria-labelledby="essence-title">
+  <div class="container">
+    <app-section-heading
+      eyebrow="Nuestra esencia"
+      title="Una marca conectada con la cultura."
+      description="Exploramos sabores, cuidamos cada detalle y construimos experiencias auténticas, tranquilas y acogedoras."
+      align="center"
+    />
+
+    <h2 id="essence-title" class="visually-hidden">Nuestra esencia y valores</h2>
+
+    <div class="essence__grid">
+      <article class="essence__card essence__card--featured" appReveal>
+        <span class="essence__index">01</span>
+        <div class="essence__symbol">M</div>
+        <p class="essence__eyebrow">Esencia</p>
+        <h3>Arte, cultura y naturaleza.</h3>
+        <p>Exaltamos la riqueza colombiana a través de cada hamburguesa y de cada experiencia Mambe.</p>
+      </article>
+
+      <article class="essence__card" appReveal [revealDelay]="80">
+        <span class="essence__index">02</span>
+        <div class="essence__icon">✦</div>
+        <p class="essence__eyebrow">Personalidad</p>
+        <h3>Exploradores y creativos.</h3>
+        <p>Somos colaboradores, solidarios y profundamente conectados con la cultura.</p>
+      </article>
+
+      <article class="essence__card" appReveal [revealDelay]="160">
+        <span class="essence__index">03</span>
+        <div class="essence__icon">◎</div>
+        <p class="essence__eyebrow">Atributo</p>
+        <h3>Auténtica y tradicional.</h3>
+        <p>Inspirada en las artesanías colombianas y elaborada con productos de alta calidad.</p>
+      </article>
+
+      <article class="essence__card" appReveal [revealDelay]="240">
+        <span class="essence__index">04</span>
+        <div class="essence__icon">⌁</div>
+        <p class="essence__eyebrow">Beneficio</p>
+        <h3>Una experiencia única.</h3>
+        <p>Cuidamos cada detalle para brindar una hamburguesa hecha como tiene que hacerse.</p>
+      </article>
+    </div>
+
+    <div class="essence__values" appReveal [revealDelay]="100">
+      <p>Nuestros valores</p>
+      <div>
+        @for (value of values; track value) {
+          <span>{{ value }}</span>
+        }
+      </div>
+    </div>
+  </div>
+</section>

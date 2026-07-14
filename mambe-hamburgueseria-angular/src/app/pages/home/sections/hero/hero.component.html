@@ -1,0 +1,79 @@
+<section id="inicio" class="hero" aria-labelledby="hero-title">
+  <img
+    class="hero__background"
+    ngSrc="assets/images/burger-hero.webp"
+    fill
+    priority
+    alt="Hamburguesa artesanal Mambe"
+  >
+  <div class="hero__overlay"></div>
+  <div class="hero__pattern"></div>
+
+  <div class="container hero__content">
+    <div class="hero__copy">
+      <p class="hero__eyebrow">
+        <span></span>
+        Sabor · Cultura · Tradición
+      </p>
+
+      <img
+        class="hero__logo"
+        ngSrc="assets/images/logo-mambe.png"
+        width="760"
+        height="325"
+        alt="Mambe Hamburguesería"
+        priority
+      >
+
+      <h1 id="hero-title">
+        Hamburguesas auténticas,
+        <strong>hechas como tienen que hacerse.</strong>
+      </h1>
+
+      <p class="hero__lead">
+        Una experiencia gastronómica que celebra la identidad colombiana en cada bocado.
+      </p>
+
+      <div class="hero__actions">
+        <a
+          class="button button--primary"
+          [href]="whatsappUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Haz tu pedido
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <button class="button button--outline" type="button" (click)="scrollTo('sedes')">
+          Conoce nuestras sedes
+        </button>
+      </div>
+
+      <div class="hero__badges" aria-label="Características de Mambe">
+        <span>Artesanal</span>
+        <span>Colombiano</span>
+        <span>Auténtico</span>
+      </div>
+    </div>
+
+    <div class="hero__character" aria-hidden="true">
+      <span class="hero__orbit hero__orbit--one"></span>
+      <span class="hero__orbit hero__orbit--two"></span>
+      <img
+        ngSrc="assets/images/maestro-mambe.png"
+        width="648"
+        height="810"
+        alt=""
+        priority
+      >
+    </div>
+  </div>
+
+  <button class="hero__scroll" type="button" (click)="scrollTo('nosotros')" aria-label="Bajar a Quiénes somos">
+    <span>Descubre Mambe</span>
+    <i></i>
+  </button>
+</section>

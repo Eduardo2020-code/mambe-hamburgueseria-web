@@ -1,0 +1,63 @@
+<section id="galeria" class="section gallery" aria-labelledby="gallery-heading">
+  <div class="container">
+    <app-section-heading
+      eyebrow="Galería"
+      title="El sabor también entra por los ojos."
+      description="Fotografías que reflejan el cuidado, la frescura y el carácter de nuestras preparaciones."
+      theme="dark"
+    />
+
+    <h2 id="gallery-heading" class="visually-hidden">Galería de hamburguesas</h2>
+
+    <div class="gallery__grid">
+      @for (item of items; track item.src; let index = $index) {
+        <button
+          class="gallery__item"
+          type="button"
+          appReveal
+          [revealDelay]="index * 90"
+          (click)="open(item)"
+          [attr.aria-label]="'Ampliar imagen: ' + item.title"
+        >
+          <img
+            [ngSrc]="item.src"
+            width="820"
+            height="1024"
+            [alt]="item.alt"
+          >
+          <span class="gallery__overlay">
+            <small>0{{ index + 1 }}</small>
+            <strong>{{ item.title }}</strong>
+            <em>{{ item.subtitle }}</em>
+          </span>
+          <i aria-hidden="true">+</i>
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+@if (selectedItem; as item) {
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imagen">
+    <button class="lightbox__backdrop" type="button" (click)="close()" aria-label="Cerrar visor"></button>
+
+    <div class="lightbox__content">
+      <button class="lightbox__close" type="button" (click)="close()" aria-label="Cerrar">
+        ×
+      </button>
+
+      <img
+        [ngSrc]="item.src"
+        width="820"
+        height="1024"
+        [alt]="item.alt"
+        priority
+      >
+
+      <div>
+        <strong>{{ item.title }}</strong>
+        <span>{{ item.subtitle }}</span>
+      </div>
+    </div>
+  </div>
+}

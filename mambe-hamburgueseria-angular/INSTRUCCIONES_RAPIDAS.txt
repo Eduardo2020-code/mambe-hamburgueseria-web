@@ -1,0 +1,19 @@
+MAMBE HAMBURGUESERÍA - INSTRUCCIONES
+
+1. Descomprime la carpeta.
+2. Ábrela en Visual Studio Code.
+3. Abre Terminal > Nueva terminal.
+4. Ejecuta:
+
+   npm install
+
+5. Cuando termine, ejecuta:
+
+   npm start
+
+6. Abre http://localhost:4200
+
+DATOS A CAMBIAR:
+src/app/core/config/site.config.ts
+
+Allí están los números de WhatsApp, direcciones, horarios, redes sociales y demás información editable.

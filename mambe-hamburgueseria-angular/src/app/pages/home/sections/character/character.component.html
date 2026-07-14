@@ -1,0 +1,35 @@
+<section class="section character" aria-labelledby="character-title">
+  <div class="character__word" aria-hidden="true">MAMBE</div>
+
+  <div class="container character__grid">
+    <div class="character__copy" appReveal>
+      <p class="eyebrow">Nuestro personaje</p>
+      <h2 id="character-title">Conoce al Maestro Mambe.</h2>
+      <p class="character__lead">
+        Un personaje que conecta la riqueza de nuestras culturas con el sabor de una buena hamburguesa.
+      </p>
+      <p>
+        En las tierras de la gastronomía colombiana surge un personaje que representa
+        la tradición, la creatividad y la alegría que acompañan cada experiencia en
+        nuestro restaurante. El Maestro Mambe ha tejido una conexión especial entre
+        la identidad colombiana y el universo de las hamburguesas.
+      </p>
+
+      <blockquote>
+        “Una hamburguesa auténtica también cuenta una historia.”
+      </blockquote>
+    </div>
+
+    <div class="character__visual" appReveal [revealDelay]="160">
+      <div class="character__circle"></div>
+      <div class="character__diamond character__diamond--one"></div>
+      <div class="character__diamond character__diamond--two"></div>
+      <img
+        ngSrc="assets/images/maestro-mambe.png"
+        width="864"
+        height="1080"
+        alt="El Maestro Mambe sosteniendo una hamburguesa"
+      >
+    </div>
+  </div>
+</section>

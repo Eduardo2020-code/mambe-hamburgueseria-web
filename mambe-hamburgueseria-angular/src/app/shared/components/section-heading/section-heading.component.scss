@@ -1,0 +1,43 @@
+.section-heading {
+  max-width: 760px;
+  margin-bottom: clamp(36px, 6vw, 64px);
+
+  h2 {
+    margin: 0;
+    color: var(--mambe-navy);
+    font-size: clamp(2.25rem, 5vw, 4.6rem);
+    font-weight: 950;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  &__description {
+    max-width: 680px;
+    margin: 22px 0 0;
+    color: var(--mambe-muted);
+    font-size: clamp(1.02rem, 2vw, 1.18rem);
+  }
+
+  &--center {
+    margin-inline: auto;
+    text-align: center;
+
+    .eyebrow {
+      justify-content: center;
+    }
+
+    .section-heading__description {
+      margin-inline: auto;
+    }
+  }
+
+  &--dark {
+    h2 {
+      color: var(--mambe-white);
+    }
+
+    .section-heading__description {
+      color: rgba(255, 255, 255, 0.72);
+    }
+  }
+}

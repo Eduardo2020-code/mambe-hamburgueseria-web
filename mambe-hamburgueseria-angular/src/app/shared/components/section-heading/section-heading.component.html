@@ -1,0 +1,12 @@
+<header
+  class="section-heading"
+  [class.section-heading--center]="align === 'center'"
+  [class.section-heading--dark]="theme === 'dark'"
+>
+  <p class="eyebrow">{{ eyebrow }}</p>
+  <h2>{{ title }}</h2>
+
+  @if (description) {
+    <p class="section-heading__description">{{ description }}</p>
+  }
+</header>

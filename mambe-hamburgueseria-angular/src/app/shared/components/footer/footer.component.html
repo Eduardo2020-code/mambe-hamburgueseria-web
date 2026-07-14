@@ -1,0 +1,43 @@
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <img
+        ngSrc="assets/images/logo-mambe.png"
+        width="390"
+        height="167"
+        alt="Mambe Hamburguesería"
+      >
+      <p>Hamburguesas auténticas inspiradas en el arte, la cultura y la tradición colombiana.</p>
+    </div>
+
+    <div>
+      <h2>Navega</h2>
+      <nav aria-label="Enlaces del pie de página">
+        @for (link of links; track link.target) {
+          <button type="button" (click)="scrollTo(link.target)">
+            {{ link.label }}
+          </button>
+        }
+      </nav>
+    </div>
+
+    <div>
+      <h2>Contáctanos</h2>
+      <a [href]="whatsappUrl" target="_blank" rel="noopener noreferrer">
+        WhatsApp
+      </a>
+      <a [href]="'mailto:' + config.email">{{ config.email }}</a>
+
+      @for (social of config.socials; track social.name) {
+        <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+          {{ social.name }}
+        </a>
+      }
+    </div>
+  </div>
+
+  <div class="container footer__bottom">
+    <p>© {{ currentYear }} Mambe Hamburguesería. Todos los derechos reservados.</p>
+    <p>Andalucía · Tuluá · Valle del Cauca</p>
+  </div>
+</footer>

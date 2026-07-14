@@ -1,0 +1,54 @@
+<section id="contacto" class="section contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact__card" appReveal>
+      <div class="contact__pattern" aria-hidden="true"></div>
+
+      <div class="contact__copy">
+        <p class="eyebrow">Vive la experiencia</p>
+        <h2 id="contact-title">¿Listo para probar Mambe?</h2>
+        <p>
+          Visítanos en Andalucía o Tuluá y disfruta hamburguesas auténticas,
+          preparadas con pasión y sabor colombiano.
+        </p>
+
+        <div class="contact__actions">
+          <a
+            class="button button--primary"
+            [href]="whatsappUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Escríbenos por WhatsApp
+          </a>
+
+          <button class="button button--outline" type="button" (click)="scrollTo('sedes')">
+            Encuentra tu sede
+          </button>
+        </div>
+
+        <div class="contact__socials">
+          @for (social of config.socials; track social.name) {
+            <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+              {{ social.name }}
+            </a>
+          }
+          <a [href]="'mailto:' + config.email">Correo</a>
+        </div>
+      </div>
+
+      <div class="contact__media" aria-hidden="true">
+        <div class="contact__image">
+          <img
+            ngSrc="assets/images/burger-03.webp"
+            width="820"
+            height="1024"
+            alt=""
+          >
+        </div>
+        <span class="contact__ring"></span>
+        <span class="contact__spark contact__spark--one"></span>
+        <span class="contact__spark contact__spark--two"></span>
+      </div>
+    </div>
+  </div>
+</section>
