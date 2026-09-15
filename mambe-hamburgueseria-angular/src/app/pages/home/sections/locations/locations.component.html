@@ -1,87 +1,202 @@
-<section id="sedes" class="section locations" aria-labelledby="locations-heading">
+<section
+  id="sedes"
+  class="locations"
+  aria-labelledby="locations-title"
+>
+
   <div class="container">
-    <app-section-heading
-      eyebrow="Nuestras sedes"
-      title="La experiencia Mambe está más cerca de ti."
-      description="Encuéntranos en Andalucía y Tuluá. Actualiza en el archivo de configuración las direcciones, teléfonos y horarios definitivos."
-      align="center"
-    />
 
-    <h2 id="locations-heading" class="visually-hidden">Sedes Mambe</h2>
+    <!-- ENCABEZADO -->
+    <div class="locations__header">
 
+      <h2 id="locations-title">
+        Encuentra tu Mambe
+        <span>más cercano.</span>
+      </h2>
+
+      <p>
+        Visítanos en Andalucía o Tuluá y disfruta de la experiencia
+        Mambe: sabor, cultura y hamburguesas auténticas.
+      </p>
+
+    </div>
+
+
+    <!-- SEDES -->
     <div class="locations__grid">
-      @for (branch of branches; track branch.city; let index = $index) {
-        <article class="location" appReveal [revealDelay]="index * 130">
-          <div class="location__media">
+
+      @for (
+        branch of branches;
+        track branch.city;
+        let index = $index
+      ) {
+
+        <article
+          class="location-card"
+          appReveal
+          [revealDelay]="index * 120"
+        >
+
+          <!-- FOTO -->
+          <div class="location-card__image">
+
             <img
               [ngSrc]="branch.image"
-              width="820"
-              height="1024"
-              [alt]="'Hamburguesa Mambe - sede ' + branch.city"
+              width="900"
+              height="700"
+              [alt]="'Mambe Hamburguesería - sede ' + branch.city"
             >
-            <div class="location__city">{{ branch.city }}</div>
+
+            <div class="location-card__image-overlay"></div>
+
+
+            <div class="location-card__city">
+
+              <small>
+                SEDE MAMBE
+              </small>
+
+              <strong>
+                {{ branch.city }}
+              </strong>
+
+            </div>
+
           </div>
 
-          <div class="location__content">
-            <p class="location__kicker">{{ branch.kicker }}</p>
-            <h3>Mambe {{ branch.city }}</h3>
 
-            <dl>
-              <div>
-                <dt>
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M12 21s6-5.4 6-11A6 6 0 1 0 6 10c0 5.6 6 11 6 11Z" stroke="currentColor" stroke-width="1.8"/>
-                    <circle cx="12" cy="10" r="2" stroke="currentColor" stroke-width="1.8"/>
-                  </svg>
-                  Dirección
-                </dt>
-                <dd>{{ branch.address }}</dd>
+          <!-- CUERPO -->
+          <div class="location-card__content">
+
+            <!-- INFORMACIÓN -->
+            <div class="location-card__contact">
+
+              <div class="location-card__contact-item">
+
+                <div class="location-card__icon">
+                  📍
+                </div>
+
+                <div>
+                  <span>Dirección</span>
+                  <strong>{{ branch.address }}</strong>
+                </div>
+
               </div>
 
-              <div>
-                <dt>
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/>
-                    <path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                  </svg>
-                  Horario
-                </dt>
-                <dd>{{ branch.schedule }}</dd>
+
+              <div class="location-card__contact-item">
+
+                <div class="location-card__icon">
+                  💬
+                </div>
+
+                <div>
+                  <span>WhatsApp</span>
+                  <strong>{{ branch.phone }}</strong>
+                </div>
+
               </div>
 
-              <div>
-                <dt>
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M8 4 6 5c-1 1-1 3 0 5 2 4 4 6 8 8 2 1 4 1 5 0l1-2-4-3-2 2c-2-1-4-3-5-5l2-2-3-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                  </svg>
-                  Teléfono
-                </dt>
-                <dd><a [href]="branch.phoneHref">{{ branch.phone }}</a></dd>
-              </div>
-            </dl>
+            </div>
 
-            <div class="location__actions">
+
+            <!-- HORARIO -->
+            <div class="location-card__schedule">
+
+              <div class="location-card__schedule-header">
+
+                <div>
+
+                  <span>
+                    Horario de atención
+                  </span>
+
+                  <strong>
+                    {{ getNote(branch.city) }}
+                  </strong>
+
+                </div>
+
+
+                <div
+                  class="location-card__status"
+                  [class.location-card__status--green]="isAlwaysOpen(branch.city)"
+                >
+
+                  <i></i>
+
+                  {{ getStatus(branch.city) }}
+
+                </div>
+
+              </div>
+
+
+              <div class="location-card__schedule-days">
+
+                @for (
+                  item of getSchedule(branch.city);
+                  track item.days
+                ) {
+
+                  <div class="location-card__schedule-item">
+
+                    <span>
+                      {{ item.days }}
+                    </span>
+
+                    <strong>
+                      {{ item.hours }}
+                    </strong>
+
+                  </div>
+
+                }
+
+              </div>
+
+            </div>
+
+
+            <!-- BOTONES -->
+            <div class="location-card__actions">
+
               <a
-                class="button button--navy"
+                class="location-card__button location-card__button--whatsapp"
+                [href]="branch.phoneHref"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <span>💬</span>
+                WhatsApp
+
+              </a>
+
+
+              <a
+                class="location-card__button location-card__button--maps"
                 [href]="branch.mapsUrl"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Cómo llegar
+
+                <span>📍</span>
+                Ver ubicación
+
               </a>
 
-              <a
-                class="location__whatsapp"
-                [href]="whatsappUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Pedir por WhatsApp
-              </a>
             </div>
+
           </div>
+
         </article>
+
       }
+
     </div>
+
   </div>
+
 </section>

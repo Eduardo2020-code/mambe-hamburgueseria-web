@@ -1,14 +1,238 @@
-<a
-  class="whatsapp"
-  [href]="whatsappUrl"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Escribir a Mambe por WhatsApp"
->
-  <span class="whatsapp__pulse"></span>
-  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M20 11.6a8 8 0 0 1-11.8 7L4 20l1.4-4.1A8 8 0 1 1 20 11.6Z" stroke="currentColor" stroke-width="1.7"/>
-    <path d="M9 8.7c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .5.4l.7 1.7c.1.3.1.5-.1.7l-.5.6c-.2.2-.2.4 0 .7.4.7 1 1.4 1.7 1.8.3.2.5.2.7-.1l.7-.8c.2-.2.4-.3.7-.2l1.6.8c.3.2.5.3.5.5 0 .2-.1 1.2-.6 1.7-.5.6-1.2.8-2 .7-1-.1-2.2-.6-3.7-1.9-1.8-1.6-2.9-3.5-3-4.7-.1-.8.2-1.4.6-1.8Z" fill="currentColor"/>
-  </svg>
-  <span class="whatsapp__label">Pide aquí</span>
-</a>
+<div class="mambe-chat">
+
+  @if (isOpen) {
+
+    <section
+      class="mambe-chat__panel"
+      aria-label="Asistente Mambe"
+    >
+
+      <header class="mambe-chat__header">
+
+        <div class="mambe-chat__identity">
+
+          <div class="mambe-chat__avatar">
+
+            <img
+              ngSrc="assets/images/maestro-mambe.png"
+              width="80"
+              height="100"
+              alt="Maestro Mambe"
+            >
+
+          </div>
+
+          <div>
+
+            <strong>
+              Maestro Mambe
+            </strong>
+
+            <span>
+              <i></i>
+              Asistente de Mambe
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          class="mambe-chat__close"
+          (click)="closeChat()"
+          aria-label="Cerrar chat"
+        >
+          ×
+        </button>
+
+      </header>
+
+
+      <div
+        #messagesBox
+        class="mambe-chat__messages"
+        aria-live="polite"
+      >
+
+        @for (
+          message of messages;
+          track $index
+        ) {
+
+          <div
+            class="mambe-chat__message"
+            [class.mambe-chat__message--user]="message.sender === 'user'"
+          >
+
+            @if (message.sender === 'bot') {
+
+              <div class="mambe-chat__mini-avatar">
+
+                <img
+                  ngSrc="assets/images/maestro-mambe.png"
+                  width="42"
+                  height="54"
+                  alt=""
+                >
+
+              </div>
+
+            }
+
+
+            <div class="mambe-chat__bubble">
+
+              <p>
+                {{ message.text }}
+              </p>
+
+
+              @if (message.actions?.length) {
+
+                <div class="mambe-chat__message-actions">
+
+                  @for (
+                    action of message.actions;
+                    track action.label
+                  ) {
+
+                    <a
+                      [href]="action.url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {{ action.label }}
+                    </a>
+
+                  }
+
+                </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        }
+
+
+        <!-- ESCRIBIENDO -->
+
+        @if (isTyping) {
+
+          <div class="mambe-chat__message">
+
+            <div class="mambe-chat__mini-avatar">
+
+              <img
+                ngSrc="assets/images/maestro-mambe.png"
+                width="42"
+                height="54"
+                alt=""
+              >
+
+            </div>
+
+
+            <div
+              class="mambe-chat__bubble mambe-chat__typing"
+              aria-label="Maestro Mambe está escribiendo"
+            >
+
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
+
+      <div class="mambe-chat__quick">
+
+        @for (
+          question of quickQuestions;
+          track question
+        ) {
+
+          <button
+            type="button"
+            [disabled]="isTyping"
+            (click)="sendQuick(question)"
+          >
+            {{ question }}
+          </button>
+
+        }
+
+      </div>
+
+
+      <form
+        class="mambe-chat__composer"
+        (ngSubmit)="sendTyped()"
+      >
+
+        <input
+          type="text"
+          name="message"
+          [(ngModel)]="draft"
+          [disabled]="isTyping"
+          placeholder="Pregúntame algo..."
+          autocomplete="off"
+          aria-label="Escribe tu pregunta"
+        >
+
+
+        <button
+          type="submit"
+          [disabled]="isTyping"
+          aria-label="Enviar pregunta"
+        >
+          ➜
+        </button>
+
+      </form>
+
+    </section>
+
+  }
+
+
+  <button
+    type="button"
+    class="mambe-chat__launcher"
+    [class.mambe-chat__launcher--open]="isOpen"
+    (click)="toggleChat()"
+    aria-label="Abrir asistente Mambe"
+  >
+
+    <span class="mambe-chat__launcher-avatar">
+
+      <img
+        ngSrc="assets/images/maestro-mambe.png"
+        width="68"
+        height="84"
+        alt=""
+      >
+
+    </span>
+
+
+    <span class="mambe-chat__launcher-label">
+      Pregúntanos
+    </span>
+
+
+    <i class="mambe-chat__online"></i>
+
+  </button>
+
+</div>

@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input
+} from '@angular/core';
 
 @Component({
   selector: 'app-section-heading',
@@ -8,9 +12,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SectionHeadingComponent {
-  @Input({ required: true }) eyebrow = '';
-  @Input({ required: true }) title = '';
-  @Input() description = '';
-  @Input() align: 'left' | 'center' = 'left';
-  @Input() theme: 'light' | 'dark' = 'light';
+
+  eyebrow = input<string>('');
+
+  title = input.required<string>();
+
+  description = input<string>('');
 }

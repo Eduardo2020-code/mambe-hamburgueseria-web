@@ -1,29 +1,55 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import {
-  NAVIGATION_LINKS,
-  SITE_CONFIG,
-  WHATSAPP_URL
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
+
+import {
+  NAVIGATION_LINKS
 } from '../../../core/config/site.config';
+
 
 @Component({
   selector: 'app-footer',
+
   standalone: true,
-  imports: [NgOptimizedImage],
+
+  imports: [],
+
   templateUrl: './footer.component.html',
+
   styleUrl: './footer.component.scss',
+
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
-  readonly currentYear = new Date().getFullYear();
-  readonly config = SITE_CONFIG;
-  readonly links = NAVIGATION_LINKS;
-  readonly whatsappUrl = WHATSAPP_URL;
+
+  readonly navigation =
+    NAVIGATION_LINKS;
+
+  readonly currentYear =
+    new Date().getFullYear();
+
 
   scrollTo(target: string): void {
-    document.getElementById(target)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
+
+    document
+      .getElementById(target)
+      ?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+
   }
+
+
+  openChat(): void {
+
+    window.dispatchEvent(
+      new CustomEvent(
+        'open-mambe-chat'
+      )
+    );
+
+  }
+
 }

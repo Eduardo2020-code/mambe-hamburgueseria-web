@@ -1,66 +1,764 @@
-.whatsapp {
+.mambe-chat {
   position: fixed;
-  z-index: 900;
+
+  z-index: 1200;
+
   right: 22px;
+
   bottom: 22px;
-  display: flex;
-  min-width: 58px;
-  height: 58px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding-inline: 17px;
-  border-radius: 999px;
-  color: var(--mambe-white);
-  background: #1fbf62;
-  box-shadow: 0 16px 42px rgba(16, 117, 60, 0.34);
-  font-weight: 950;
-  transition: transform var(--transition), box-shadow var(--transition);
 
-  svg {
-    width: 27px;
-    height: 27px;
-  }
 
-  &:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 22px 52px rgba(16, 117, 60, 0.42);
-  }
+  /* =====================================
+     BOTÓN FLOTANTE
+     ===================================== */
 
-  &__pulse {
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    border-radius: inherit;
-    background: #1fbf62;
-    animation: pulse 2.4s infinite;
-  }
-}
+  &__launcher {
+    position: relative;
 
-@keyframes pulse {
-  0% {
-    opacity: 0.45;
-    transform: scale(1);
-  }
+    display: flex;
 
-  75%,
-  100% {
-    opacity: 0;
-    transform: scale(1.38);
-  }
-}
+    height: 64px;
 
-@media (max-width: 580px) {
-  .whatsapp {
-    right: 15px;
-    bottom: 15px;
-    width: 56px;
-    min-width: 56px;
-    height: 56px;
-    padding: 0;
+    align-items: center;
 
-    &__label {
-      display: none;
+    gap: 10px;
+
+    padding:
+      6px 18px 6px 7px;
+
+    border: 0;
+
+    border-radius: 999px;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    background:
+      linear-gradient(
+        135deg,
+        #f58f3a,
+        #feb54b
+      );
+
+    box-shadow:
+      0 18px 45px
+      rgba(245, 143, 58, 0.34);
+
+    transition:
+      transform 0.28s ease,
+      box-shadow 0.28s ease;
+
+
+    &:hover {
+      transform:
+        translateY(-4px);
+
+      box-shadow:
+        0 24px 55px
+        rgba(245, 143, 58, 0.42);
     }
   }
+
+
+  &__launcher-avatar {
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+
+    img {
+      width: 42px;
+      height: 52px;
+
+      object-fit: contain;
+
+      object-position:
+        center bottom;
+    }
+  }
+
+
+  &__launcher-label {
+    color: #11184d;
+
+    font-size: 0.94rem;
+
+    font-weight: 900;
+  }
+
+
+  &__online {
+    position: absolute;
+
+    top: 5px;
+
+    left: 46px;
+
+    width: 11px;
+    height: 11px;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 50%;
+
+    background: #22c66b;
+
+    animation:
+      chatPulse 2s infinite;
+  }
+
+
+  /* =====================================
+     PANEL
+     ===================================== */
+
+  &__panel {
+    position: absolute;
+
+    right: 0;
+
+    bottom: 82px;
+
+    width: 390px;
+
+    height: min(650px, 76vh);
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border:
+      1px solid
+      rgba(17, 24, 77, 0.10);
+
+    border-radius: 26px;
+
+    background: #ffffff;
+
+    box-shadow:
+      0 30px 90px
+      rgba(5, 12, 43, 0.26);
+
+    animation:
+      chatOpen 0.3s ease;
+  }
+
+
+  /* =====================================
+     HEADER
+     ===================================== */
+
+  &__header {
+    display: flex;
+
+    min-height: 82px;
+
+    align-items: center;
+
+    justify-content:
+      space-between;
+
+    gap: 14px;
+
+    padding: 13px 16px;
+
+    color: #ffffff;
+
+    background:
+      linear-gradient(
+        135deg,
+        #081437,
+        #15235c
+      );
+  }
+
+
+  &__identity {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+
+    strong {
+      display: block;
+
+      font-size: 1rem;
+
+      font-weight: 900;
+    }
+
+
+    span {
+      display: flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      margin-top: 3px;
+
+      color:
+        rgba(255, 255, 255, 0.67);
+
+      font-size: 0.74rem;
+
+
+      i {
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: #52dc8b;
+      }
+    }
+  }
+
+
+  &__avatar {
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    border:
+      2px solid
+      rgba(255, 255, 255, 0.20);
+
+    border-radius: 50%;
+
+    background:
+      #feb54b;
+
+
+    img {
+      width: 45px;
+      height: 57px;
+
+      object-fit: contain;
+
+      object-position:
+        center bottom;
+    }
+  }
+
+
+  &__close {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 0;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.15);
+
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    background:
+      rgba(255, 255, 255, 0.08);
+
+    font-size: 1.5rem;
+  }
+
+
+  /* =====================================
+     MENSAJES
+     ===================================== */
+
+  &__messages {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 18px 14px;
+
+    background:
+      #f6f7fa;
+
+    scrollbar-width: thin;
+  }
+
+
+  &__message {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+
+
+    &--user {
+      justify-content:
+        flex-end;
+
+
+      .mambe-chat__bubble {
+        color: #ffffff;
+
+        background:
+          #11184d;
+
+        border-radius:
+          18px 18px 5px 18px;
+      }
+    }
+  }
+
+
+  &__mini-avatar {
+    width: 30px;
+    height: 30px;
+
+    flex: 0 0 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background:
+      #feb54b;
+
+
+    img {
+      width: 25px;
+      height: 32px;
+
+      object-fit: contain;
+
+      object-position:
+        center bottom;
+    }
+  }
+
+
+  &__bubble {
+    max-width: 82%;
+
+    padding: 12px 14px;
+
+    border:
+      1px solid
+      rgba(17, 24, 77, 0.07);
+
+    border-radius:
+      18px 18px 18px 5px;
+
+    background: #ffffff;
+
+    box-shadow:
+      0 5px 16px
+      rgba(17, 24, 77, 0.05);
+
+
+    p {
+      margin: 0;
+
+      color: inherit;
+
+      font-size: 0.87rem;
+
+      line-height: 1.55;
+
+      white-space: pre-line;
+    }
+  }
+
+
+  &__message-actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-top: 10px;
+
+
+    a {
+      display: inline-flex;
+
+      min-height: 34px;
+
+      align-items: center;
+
+      padding: 7px 10px;
+
+      border-radius: 9px;
+
+      color: #11184d;
+
+      background:
+        #edf8fa;
+
+      font-size: 0.72rem;
+
+      font-weight: 800;
+
+      text-decoration: none;
+
+
+      &:hover {
+        background:
+          #dff4f7;
+      }
+    }
+  }
+
+
+  /* =====================================
+     PREGUNTAS RÁPIDAS
+     ===================================== */
+
+  &__quick {
+    display: flex;
+
+    gap: 7px;
+
+    overflow-x: auto;
+
+    padding:
+      10px 12px;
+
+    border-top:
+      1px solid
+      rgba(17, 24, 77, 0.07);
+
+    background: #ffffff;
+
+
+    button {
+      flex: 0 0 auto;
+
+      padding:
+        8px 11px;
+
+      border:
+        1px solid
+        rgba(17, 24, 77, 0.10);
+
+      border-radius: 999px;
+
+      color: #11184d;
+
+      cursor: pointer;
+
+      background:
+        #f7f8fa;
+
+      font-size: 0.72rem;
+
+      font-weight: 800;
+
+
+      &:hover {
+        border-color:
+          rgba(245, 143, 58, 0.4);
+
+        background:
+          rgba(245, 143, 58, 0.08);
+      }
+    }
+  }
+
+
+  /* =====================================
+     INPUT
+     ===================================== */
+
+  &__composer {
+    display: grid;
+
+    grid-template-columns:
+      1fr 44px;
+
+    gap: 8px;
+
+    padding: 12px;
+
+    border-top:
+      1px solid
+      rgba(17, 24, 77, 0.08);
+
+    background: #ffffff;
+
+
+    input {
+      width: 100%;
+
+      min-width: 0;
+
+      padding:
+        11px 13px;
+
+      border:
+        1px solid
+        rgba(17, 24, 77, 0.12);
+
+      border-radius: 13px;
+
+      outline: none;
+
+      color: #11184d;
+
+      background:
+        #f8f9fb;
+
+      font: inherit;
+
+
+      &:focus {
+        border-color:
+          #f58f3a;
+
+        box-shadow:
+          0 0 0 3px
+          rgba(245, 143, 58, 0.10);
+      }
+    }
+
+
+    button {
+      width: 44px;
+      height: 44px;
+
+      display: grid;
+
+      place-items: center;
+
+      border: 0;
+
+      border-radius: 13px;
+
+      color: #11184d;
+
+      cursor: pointer;
+
+      background:
+        #feb54b;
+
+      font-size: 1.1rem;
+
+      font-weight: 900;
+
+
+      &:hover {
+        background:
+          #f6a43d;
+      }
+    }
+  }
+
+}
+
+
+/* =====================================
+   ANIMACIONES
+   ===================================== */
+
+@keyframes chatPulse {
+
+  0% {
+    box-shadow:
+      0 0 0 0
+      rgba(34, 198, 107, 0.45);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 9px
+      rgba(34, 198, 107, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0
+      rgba(34, 198, 107, 0);
+  }
+
+}
+
+
+@keyframes chatOpen {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(14px)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =====================================
+   CELULAR
+   ===================================== */
+
+@media (max-width: 580px) {
+
+  .mambe-chat {
+    right: 14px;
+
+    bottom: 14px;
+
+
+    &__panel {
+      position: fixed;
+
+      right: 10px;
+
+      bottom: 86px;
+
+      left: 10px;
+
+      width: auto;
+
+      height:
+        min(650px, 76vh);
+
+      border-radius: 22px;
+    }
+
+
+    &__launcher {
+      width: 58px;
+      height: 58px;
+
+      padding: 5px;
+
+      justify-content: center;
+    }
+
+
+    &__launcher-avatar {
+      width: 48px;
+      height: 48px;
+    }
+
+
+    &__launcher-label {
+      display: none;
+    }
+
+
+    &__online {
+      left: 45px;
+    }
+
+  }
+/* =====================================
+   MAESTRO MAMBE ESCRIBIENDO
+   ===================================== */
+
+.mambe-chat__typing {
+  min-width: 66px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  padding:
+    15px 16px;
+}
+
+
+.mambe-chat__typing span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #7e87a3;
+
+  animation:
+    mambeTyping 1.15s infinite ease-in-out;
+}
+
+
+.mambe-chat__typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+
+.mambe-chat__typing span:nth-child(3) {
+  animation-delay: 0.30s;
+}
+
+
+@keyframes mambeTyping {
+
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+
+    transform:
+      translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+
+    transform:
+      translateY(-5px);
+  }
+
+}
+
+
+/* BOTONES DESACTIVADOS MIENTRAS RESPONDE */
+
+.mambe-chat__quick button:disabled,
+.mambe-chat__composer button:disabled,
+.mambe-chat__composer input:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.55;
+}
 }

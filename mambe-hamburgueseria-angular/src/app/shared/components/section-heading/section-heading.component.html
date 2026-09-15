@@ -1,12 +1,20 @@
-<header
-  class="section-heading"
-  [class.section-heading--center]="align === 'center'"
-  [class.section-heading--dark]="theme === 'dark'"
->
-  <p class="eyebrow">{{ eyebrow }}</p>
-  <h2>{{ title }}</h2>
+<div class="section-heading">
 
-  @if (description) {
-    <p class="section-heading__description">{{ description }}</p>
+  @if (eyebrow()) {
+    <div class="section-heading__eyebrow">
+      <span></span>
+      {{ eyebrow() }}
+    </div>
   }
-</header>
+
+  <h2 class="section-heading__title">
+    {{ title() }}
+  </h2>
+
+  @if (description()) {
+    <p class="section-heading__description">
+      {{ description() }}
+    </p>
+  }
+
+</div>

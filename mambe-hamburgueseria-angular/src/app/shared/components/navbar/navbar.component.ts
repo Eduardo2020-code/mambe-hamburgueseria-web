@@ -1,28 +1,57 @@
-import { DOCUMENT, NgOptimizedImage } from '@angular/common';
+import {
+  DOCUMENT,
+  NgOptimizedImage
+} from '@angular/common';
+
 import {
   ChangeDetectionStrategy,
   Component,
   HostListener,
   Inject
 } from '@angular/core';
-import { NAVIGATION_LINKS, WHATSAPP_URL } from '../../../core/config/site.config';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
-  readonly links = NAVIGATION_LINKS;
-  readonly whatsappUrl = WHATSAPP_URL;
+
+  readonly links = [
+    {
+      label: 'Información',
+      target: 'nosotros'
+    },
+    {
+      label: 'Sedes',
+      target: 'sedes'
+    },
+    {
+      label: 'Galería',
+      target: 'galeria'
+    },
+    {
+      label: 'Misión y Visión',
+      target: 'mision-vision'
+    },
+    {
+      label: 'Maestro',
+      target: 'maestro'
+    }
+  ] as const;
 
   menuOpen = false;
   scrolled = false;
 
-  constructor(@Inject(DOCUMENT) private readonly document: Document) {}
+  constructor(
+    @Inject(DOCUMENT)
+    private readonly document: Document
+  ) {}
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
@@ -31,19 +60,29 @@ export class NavbarComponent {
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
-    this.document.body.classList.toggle('menu-open', this.menuOpen);
+
+    this.document.body.classList.toggle(
+      'menu-open',
+      this.menuOpen
+    );
   }
 
   closeMenu(): void {
     this.menuOpen = false;
-    this.document.body.classList.remove('menu-open');
+
+    this.document.body.classList.remove(
+      'menu-open'
+    );
   }
 
   scrollTo(target: string): void {
     this.closeMenu();
-    this.document.getElementById(target)?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
+
+    this.document
+      .getElementById(target)
+      ?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
   }
 }
