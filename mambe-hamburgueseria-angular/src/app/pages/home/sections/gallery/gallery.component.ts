@@ -75,7 +75,7 @@ export class GalleryComponent {
       name: 'Origen',
       description:
         '150 g de carne Angus, vegetales y queso americano.',
-      image: 'assets/images/productos/origen.jpg',
+      image: 'assets/images/4444.png',
       alt: 'Hamburguesa Origen Mambe'
     },
 
@@ -83,7 +83,7 @@ export class GalleryComponent {
       name: 'Smash Artesanal',
       description:
         '160 g de doble carne Angus smash, vegetales y queso americano.',
-      image: 'assets/images/productos/smash-artesanal.jpg',
+      image: 'assets/images/ancestral.jpeg',
       alt: 'Hamburguesa Smash Artesanal Mambe'
     },
 
@@ -91,7 +91,7 @@ export class GalleryComponent {
       name: 'Ancestral',
       description:
         '300 g de doble carne Angus, vegetales y queso americano.',
-      image: 'assets/images/productos/ancestral.jpg',
+      image: 'assets/images/74.png',
       alt: 'Hamburguesa Ancestral Mambe'
     },
 

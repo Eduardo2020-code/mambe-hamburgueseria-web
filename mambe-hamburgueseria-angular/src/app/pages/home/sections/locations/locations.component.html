@@ -6,23 +6,45 @@
 
   <div class="container">
 
-    <!-- ENCABEZADO -->
-    <div class="locations__header">
+
+    <!-- ============================
+         ENCABEZADO
+         ============================ -->
+
+    <div
+      class="locations__header"
+      appReveal
+    >
+
+      <span class="locations__eyebrow">
+        Nuestras sedes
+      </span>
+
 
       <h2 id="locations-title">
+
         Encuentra tu Mambe
-        <span>más cercano.</span>
+
+        <span>
+          más cercano.
+        </span>
+
       </h2>
 
+
       <p>
-        Visítanos en Andalucía o Tuluá y disfruta de la experiencia
-        Mambe: sabor, cultura y hamburguesas auténticas.
+        Visítanos en Andalucía o Tuluá y disfruta de la
+        experiencia Mambe: sabor, cultura y hamburguesas
+        auténticas.
       </p>
 
     </div>
 
 
-    <!-- SEDES -->
+    <!-- ============================
+         SEDES
+         ============================ -->
+
     <div class="locations__grid">
 
       @for (
@@ -37,63 +59,104 @@
           [revealDelay]="index * 120"
         >
 
-          <!-- FOTO -->
+
+          <!-- ============================
+               IMAGEN
+               ============================ -->
+
           <div class="location-card__image">
 
             <img
               [ngSrc]="branch.image"
               width="900"
-              height="700"
-              [alt]="'Mambe Hamburguesería - sede ' + branch.city"
+              height="600"
+              [alt]="'Sede Mambe ' + branch.city"
             >
 
-            <div class="location-card__image-overlay"></div>
+
+            <div
+              class="location-card__image-overlay"
+            ></div>
 
 
-            <div class="location-card__city">
+            <div
+              class="location-card__image-copy"
+            >
 
-              <small>
-                SEDE MAMBE
-              </small>
+              <span>
+                Sede Mambe
+              </span>
 
-              <strong>
+              <h3>
                 {{ branch.city }}
-              </strong>
+              </h3>
 
             </div>
 
           </div>
 
 
-          <!-- CUERPO -->
-          <div class="location-card__content">
+          <!-- ============================
+               CONTENIDO
+               ============================ -->
 
-            <!-- INFORMACIÓN -->
-            <div class="location-card__contact">
+          <div class="location-card__body">
 
-              <div class="location-card__contact-item">
 
-                <div class="location-card__icon">
+            <!-- DATOS PRINCIPALES -->
+
+            <div class="location-card__info-grid">
+
+
+              <!-- DIRECCIÓN -->
+
+              <div class="location-card__info">
+
+                <span
+                  class="location-card__info-icon"
+                  aria-hidden="true"
+                >
                   📍
-                </div>
+                </span>
+
 
                 <div>
-                  <span>Dirección</span>
-                  <strong>{{ branch.address }}</strong>
+
+                  <small>
+                    Dirección
+                  </small>
+
+                  <strong>
+                    {{ branch.address }}
+                  </strong>
+
                 </div>
 
               </div>
 
 
-              <div class="location-card__contact-item">
+              <!-- WHATSAPP -->
 
-                <div class="location-card__icon">
+              <div class="location-card__info">
+
+                <span
+                  class="location-card__info-icon"
+                  aria-hidden="true"
+                >
                   💬
-                </div>
+                </span>
+
 
                 <div>
-                  <span>WhatsApp</span>
-                  <strong>{{ branch.phone }}</strong>
+
+                  <small>
+                    WhatsApp
+                  </small>
+
+                  <strong>
+                    {{ branch.phone }}
+                  </strong>
+
                 </div>
 
               </div>
@@ -101,88 +164,172 @@
             </div>
 
 
-            <!-- HORARIO -->
+            <!-- ============================
+                 HORARIOS
+                 ============================ -->
+
             <div class="location-card__schedule">
 
-              <div class="location-card__schedule-header">
+
+              <!-- ENCABEZADO HORARIO -->
+
+              <div
+                class="location-card__schedule-header"
+              >
 
                 <div>
 
-                  <span>
+                  <small>
                     Horario de atención
-                  </span>
+                  </small>
+
 
                   <strong>
-                    {{ getNote(branch.city) }}
+
+                    @if (
+                      branch.city === 'Andalucía'
+                    ) {
+
+                      Atención nocturna
+
+                    } @else {
+
+                      Atención continua
+
+                    }
+
                   </strong>
 
                 </div>
 
 
-                <div
-                  class="location-card__status"
-                  [class.location-card__status--green]="isAlwaysOpen(branch.city)"
+                <!-- ESTADO AUTOMÁTICO -->
+
+                <span
+                  [class]="getStatusClass(branch.city)"
                 >
 
                   <i></i>
 
-                  {{ getStatus(branch.city) }}
+                  {{
+                    getBranchStatus(
+                      branch.city
+                    ).label
+                  }}
 
-                </div>
+                </span>
 
               </div>
 
 
-              <div class="location-card__schedule-days">
+              <!-- HORARIO ENTRE SEMANA -->
 
-                @for (
-                  item of getSchedule(branch.city);
-                  track item.days
-                ) {
+              <div
+                class="location-card__schedule-row"
+              >
 
-                  <div class="location-card__schedule-item">
+                <span>
 
-                    <span>
-                      {{ item.days }}
-                    </span>
+                  {{
+                    getWeekSchedule(
+                      branch.city
+                    )
+                  }}
 
-                    <strong>
-                      {{ item.hours }}
-                    </strong>
+                </span>
 
-                  </div>
 
-                }
+                <strong>
+
+                  {{
+                    getWeekHours(
+                      branch.city
+                    )
+                  }}
+
+                </strong>
+
+              </div>
+
+
+              <!-- MARTES CERRADO ANDALUCÍA -->
+
+
+              <!-- FIN DE SEMANA -->
+
+              <div
+                class="location-card__schedule-row"
+              >
+
+                <span>
+                  Sábado, domingo y festivos
+                </span>
+
+
+                <strong>
+
+                  {{
+                    getWeekendHours(
+                      branch.city
+                    )
+                  }}
+
+                </strong>
 
               </div>
 
             </div>
 
 
-            <!-- BOTONES -->
+            <!-- ============================
+                 BOTONES
+                 ============================ -->
+
             <div class="location-card__actions">
 
+
+              <!-- WHATSAPP -->
+
               <a
-                class="location-card__button location-card__button--whatsapp"
-                [href]="branch.phoneHref"
+                class="
+                  location-card__button
+                  location-card__button--whatsapp
+                "
+                [href]="
+                  getWhatsappUrl(
+                    branch.phone,
+                    branch.city
+                  )
+                "
                 target="_blank"
                 rel="noopener noreferrer"
               >
 
-                <span>💬</span>
+                <span aria-hidden="true">
+                  💬
+                </span>
+
                 WhatsApp
 
               </a>
 
 
+              <!-- MAPA -->
+
               <a
-                class="location-card__button location-card__button--maps"
+                class="
+                  location-card__button
+                  location-card__button--map
+                "
                 [href]="branch.mapsUrl"
                 target="_blank"
                 rel="noopener noreferrer"
               >
 
-                <span>📍</span>
+                <span aria-hidden="true">
+                  📍
+                </span>
+
                 Ver ubicación
 
               </a>
